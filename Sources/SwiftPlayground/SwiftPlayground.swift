@@ -52,6 +52,8 @@ func reducedHeight(original: Double, reductionPercent: Double) -> Double {
 @main
 struct SwiftPlayground {
     static func main() {
-        print("Hello, world!")
+        print(printArea(length: 6.0, width: 2.5), "m²")
+        
+        print(printVolume(length: 6.0, width: 2.5, height: 2.3), "m³")
     }
 }
