@@ -1,5 +1,8 @@
 // The Swift Programming Language
 // https://docs.swift.org/swift-book
+
+/// Prints and returns the choice that the user has selected after checking it is valid.
+/// - Return: The choice that the user has selected if valid.
 func menuChoice() -> Int {
 
     while true {
