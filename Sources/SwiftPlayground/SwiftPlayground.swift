@@ -1,5 +1,6 @@
 // The Swift Programming Language
 // https://docs.swift.org/swift-book
+
 func print(board: [[String]]) {
     board.forEach { line in
         print("\(line[0]) | \(line[1]) | \(line[2])")
