@@ -134,15 +134,15 @@ struct SwiftPlayGround {
                     }
                 }
 
-            // Informs the user how much stock is left. 
+            // Provides information on eggs in stock.
             case 3:
                 print(stockMessage(stock: eggsInStock))
 
-            // Informs the user how many eggs have been sold. 
+            // Provides information on sold eggs.
             case 4:
                 print("Total sold eggs: \(eggsSold)")
 
-            // Allows the user to exit the loop and informs them of the final statistics - eggs sold and eggs left in stock. 
+            // Allows the user to exit the loop and informs them of the final statistics
             case 5:
                 print(dailySummary(stock: eggsInStock, soldEggs: eggsSold))
                 running = false 
