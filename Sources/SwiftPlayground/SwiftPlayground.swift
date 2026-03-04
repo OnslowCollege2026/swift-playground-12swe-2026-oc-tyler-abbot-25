@@ -65,6 +65,14 @@ func sellEggs(currentStock: Int, amount: Int) -> Int? {
     return newStock
 }
 
+/// Informs the user how much stock they have left. 
+/// - Parameter stock: The amount of eggs the user has. 
+/// - Return: The stock message in a string variant. 
+func stockMessage(stock: Int) -> String {
+    let stockMessage = "You have \(stock) eggs left."
+    return stockMessage
+}
+
 /// Updates the amount of eggs that are sold. 
 /// - Parameters:
 ///     - Current sold: The amount of eggs that are already sold.
@@ -73,14 +81,6 @@ func sellEggs(currentStock: Int, amount: Int) -> Int? {
 func updateSoldCount(currentSold: Int, amount: Int) -> Int {
     let newTotal = currentSold + amount
     return newTotal
-}
-
-/// Informs the user how much stock they have left. 
-/// - Parameter stock: The amount of eggs the user has. 
-/// - Return: The stock in a string variant. 
-func stockMessage(stock: Int) -> String {
-    let stockMessage = "You have \(stock) eggs left."
-    return stockMessage
 }
 
 /// Gives the user a summary of how many eggs were sold and the remaining eggs.
