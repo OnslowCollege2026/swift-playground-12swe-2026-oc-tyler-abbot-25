@@ -14,6 +14,24 @@ func totalPrinted(of table: [[Int]]) -> Int {
     return printed
 }
 
+// Task C ------------------------------------------------------------------
+
+/// This function adds the numbers in each column index together.
+/// - Parameters:
+///     - table: the number in the table.
+///     - columnIndex: the index of the column you want to add.
+/// - Return: The total of the column depending on the index.
+
+func columnTotal(table: [[Int]], columnIndex: Int) -> Int {
+    var sum = 0
+    for row in table {
+        if columnIndex >= 0 && columnIndex < row.count {
+            sum += row[columnIndex]
+        }
+    }
+    return sum
+}
+
 struct twodimensionarrays {
     static func main() {
 
@@ -40,13 +58,30 @@ struct twodimensionarrays {
 
 // Task B ------------------------------------------------------------------
 
-        let table = [
-            [2, 4, 6],
-            [8, 10, 12],
-            [14, 16, 18]
-        ]
+    let tabley = [
+        [2, 4, 6],
+        [8, 10, 12],
+        [14, 16, 18]
+    ]
 
-        print(table)
-        print(totalPrinted(of: table))
+    print(tabley)
+    print(totalPrinted(of: tabley))
+
+// Task C ------------------------------------------------------------------
+
+    // Contains values to add.
+    let table = [
+        [3, 5, 7, 9],
+        [2, 4],
+        [8, 6, 1],
+        [10]
+    ]
+
+    // Testing the different indexes. 
+    print(columnTotal(table: table, columnIndex: 0))
+    print(columnTotal(table: table, columnIndex: 1))
+    print(columnTotal(table: table, columnIndex: 2))
+    print(columnTotal(table: table, columnIndex: 3))
+    
     }
 }
