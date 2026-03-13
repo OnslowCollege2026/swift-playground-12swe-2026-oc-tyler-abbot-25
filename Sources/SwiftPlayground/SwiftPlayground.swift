@@ -19,7 +19,7 @@ struct SwiftPlayground {
         for i in 0..<ocean.count {
             rowLabel += "\(i)"
         }
-        
+                
         ocean[1][3] = "S"
         ocean[2][3] = "S"
         ocean[4][0] = "S"
