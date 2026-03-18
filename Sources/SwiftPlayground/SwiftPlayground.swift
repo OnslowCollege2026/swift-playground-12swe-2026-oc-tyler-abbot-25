@@ -1,8 +1,6 @@
 // The Swift Programming Language
 // https://docs.swift.org/swift-book
 
-/// Parameter:
-/// - board: The 2D grid to display.
 func printBoard(_ board: [[String]]) {
     print("  0 1 2 3 4 5")
     
@@ -18,20 +16,20 @@ func printBoard(_ board: [[String]]) {
 func processGuess(row: Int, col: Int, ocean: [[String]], guesses: [[String]]) -> [[String]] {
     var updatedGuesses = guesses
     
-    // Checking if valid
+    
     guard row >= 0 && row < ocean.count &&
             col >= 0 && col < ocean[0].count else {
         print("Invalid coordinates. Try again.")
         return guesses
     }
     
-    // Checking if option is already guessed
+    
     if guesses[row][col] == "X" || guesses[row][col] == "O" {
         print("You have already guessed this spot.")
         return guesses
     }
     
-    // Hit or miss
+    
     if ocean[row][col] == "S" {
         print("Hit")
         updatedGuesses[row][col] = "X"
