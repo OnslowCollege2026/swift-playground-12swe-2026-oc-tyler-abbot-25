@@ -171,6 +171,7 @@ struct SwiftPlayground {
             // Prints an end message once the loop is over & the user lost.
             if turn == maxGuesses {
                 print("Game over! Ships remaining: \(shipsLeft).")
+                printBoard(ocean)
             }
         }
     }
