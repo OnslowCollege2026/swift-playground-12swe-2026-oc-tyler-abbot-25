@@ -5,17 +5,21 @@
 /// Prints the board for the user to guess.
 /// - Parameter board: The grid for the user to guess with. 
 func printBoard(_ board: [[String]]) {
-    print("  0 1 2 3 4 5")
+    var columnLabels = "  "
+    for i in 0..<board.count {
+        columnLabels = columnLabels + "\(i) "
+    }
+    print(columnLabels)
     
-    // Checks and prints the column number. 
-    for (i, row) in board.enumerated() {
-        var line = "\(i) "
+    for (index, row) in board.enumerated() {
+        var rowString = "\(index) "
         for cell in row {
-            line += "\(cell) "
+            rowString = rowString + cell + " "
         }
-        print(line)
+        print(rowString)
     }
 }
+
 
 /// Checks the guess to see if it hits, misses or is invalid.
 /// - Parameters:
@@ -99,18 +103,40 @@ struct SwiftPlayground {
     static func main() {
 
         // Manages size of the board.
-        let size = 6
+        var size = 0
+
+        var maxGuesses = 0
+        var shipCount = 0
+
+        while true {
+            print("What size would you like the grid to be?")
+            if let userInput = readLine(), let gridInput = Int(userInput) {
+                size += gridInput
+                break
+            } else {
+                print("Invalid option, please pick a number.")
+            }
+        }
+
+        while true {
+            print("How many ships do you want to place?")
+            if let userInput = readLine(), let shipInput = Int(userInput), shipInput > 0 && shipInput <= size * size {
+                shipCount += shipInput
+                maxGuesses += shipInput + 4
+                break 
+            } else {
+                print("Invalid option, must not exceed the size or be lower than 0.")
+            }
+        }
 
         // Contains the user's guesses and the locations of the ships.
         var ocean = Array(repeating: Array(repeating: "~", count: size), count: size)
         var guesses = Array(repeating: Array(repeating: "~", count: size), count: size)
 
+        ocean = randomShipPlacement(size: size, shipCount: shipCount)
+
         print("Initial Board:")
         printBoard(guesses)
-
-        let maxGuesses = 15
-
-        ocean = randomShipPlacement(size: size, shipCount: 4)
 
         // Only allows the user to play an allocated amount of guesses.
         for turn in 1...maxGuesses {
