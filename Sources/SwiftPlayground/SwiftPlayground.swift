@@ -5,6 +5,9 @@
 struct SwiftPlayground {
     static func main() {
         // Constants and variables.
+        let vocabulary = [
+            ["Hello.", "Hola"]
+        ]
 
         // Loop until all vocab questions asked. 
 
