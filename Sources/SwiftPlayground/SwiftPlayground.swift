@@ -29,7 +29,8 @@ struct SwiftPlayground {
 
             // Present the possible answer
 
-            // 
+            // Check if the user got the correct answer.
+            // If not, take not and ask later. 
         }
 
         // Show the question.
