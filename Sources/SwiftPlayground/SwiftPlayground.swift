@@ -26,6 +26,7 @@ struct SwiftPlayground {
         // Loop until all vocab questions asked. 
         while correctCount == vocabulary.count {
             // Show the question
+            print("What is the translation of \(vocabulary)")
 
             // Present the possible answer
 
