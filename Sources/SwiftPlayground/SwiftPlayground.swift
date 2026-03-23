@@ -22,6 +22,7 @@ struct SwiftPlayground {
         var incorrectCount = 0
 
         // Loop until all vocab questions asked. 
+        while 
 
         // Show the question.
 
