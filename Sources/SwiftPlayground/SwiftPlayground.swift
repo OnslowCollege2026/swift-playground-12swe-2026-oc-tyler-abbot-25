@@ -8,11 +8,11 @@ struct SwiftPlayground {
         /// The vocabulary to test the user on.
         /// Each array contains the English word, the correct answer in the language and three wrong answers. 
         let vocabulary = [
-            ["Hello.", "Hola", "Y tu", "Bueno", "Decir"],
-            ["Goodbye", "Adios", "Hola", "Buenos dias", "Necessito"],
-            ["Please", "Por Favor", "Hola", "Adios", "Lo siento"],
+            ["Hello.",              "Hola", "Y tu", "Bueno", "Decir"],
+            ["Goodbye",  "Adios", "Hola", "Buenos dias", "Necessito"],
+            ["Please",     "Por Favor", "Hola", "Adios", "Lo siento"],
             ["Thanks", "Gracias", "Lo siento", "Mi opinion", "Hacer"],
-            ["My name is", "Me llamo", "Hola","Por favor", "Bueno"]
+            ["My name is",   "Me llamo", "Hola","Por favor", "Bueno"]
         ]
 
         /// The indices of the questions that the user got wrong.
@@ -21,8 +21,16 @@ struct SwiftPlayground {
         /// The number of questions that the user got wrong first time around.
         var incorrectCount = 0
 
+        /// The number of questions the user got right.
+        var correctCount = 0 
         // Loop until all vocab questions asked. 
-        while 
+        while correctCount == vocabulary.count {
+            // Show the question
+
+            // Present the possible answer
+
+            // 
+        }
 
         // Show the question.
 
