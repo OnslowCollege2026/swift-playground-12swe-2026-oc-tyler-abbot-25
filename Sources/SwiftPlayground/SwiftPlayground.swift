@@ -29,7 +29,11 @@ struct SwiftPlayground {
             print("What is the word \(vocabulary[correctCount][0]) in spanish?")
 
             // Present the possible answer
-            forEach
+            vocabulary.forEach { row in
+                row.forEach { word in
+                    print()
+                }
+            }
 
             // Check if the user got the correct answer.
             // If not, take not and ask later. 
