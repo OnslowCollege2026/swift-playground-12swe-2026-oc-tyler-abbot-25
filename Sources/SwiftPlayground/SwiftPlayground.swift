@@ -5,9 +5,21 @@
 struct SwiftPlayground {
     static func main() {
         // Constants and variables.
+        /// The vocabulary to test the user on.
+        /// Each array contains the English word, the correct answer in the language and three wrong answers. 
         let vocabulary = [
-            ["Hello.", "Hola"]
+            ["Hello.", "Hola", "Y tu", "Bueno", "Decir"],
+            ["Goodbye", "Adios", "Hola", "Buenos dias", "Necessito"],
+            ["Please", "Por Favor", "Hola", "Adios", "Lo siento"],
+            ["Thanks", "Gracias", "Lo siento", "Mi opinion", "Hacer"],
+            ["My name is", "Me llamo", "Hola","Por favor", "Bueno"]
         ]
+
+        /// The indices of the questions that the user got wrong.
+        var incorrectIndices: [Int] = []
+
+        /// The number of questions that the user got wrong first time around.
+        var incorrectCount = 0
 
         // Loop until all vocab questions asked. 
 
