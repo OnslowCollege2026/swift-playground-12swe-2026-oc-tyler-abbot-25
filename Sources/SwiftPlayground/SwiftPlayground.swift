@@ -1,6 +1,14 @@
 // The Swift Programming Language
 // https://docs.swift.org/swift-book
 
+func options(vocabulary: [[String]], row: Int) -> [[String]] {
+    var optionRow:Int = row
+
+    for row in vocabulary {
+        if 
+    }
+}
+
 @main
 struct SwiftPlayground {
     static func main() {
