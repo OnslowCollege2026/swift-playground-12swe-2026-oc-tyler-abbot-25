@@ -26,14 +26,7 @@ struct SwiftPlayground {
         // Loop until all vocab questions asked. 
         while correctCount <= vocabulary.count {
             // Show the question
-            print("What is the word \(vocabulary[correctCount][0]) in spanish?")
-
-            // Present the possible answer
-            vocabulary.forEach { row in
-                row.forEach { word in
-                    print()
-                }
-            }
+            print("What is the word \(vocabulary[0][0]) in spanish?")
 
             // Check if the user got the correct answer.
             // If not, take not and ask later. 
