@@ -4,6 +4,15 @@
 @main
 struct SwiftPlayground {
     static func main() {
-        print("Hello, world!")
+        // Constants and variables.
+
+        // Loop until all vocab questions asked. 
+
+        // Show the question.
+
+        // Present the possible answers.
+
+        // Check if the user guessed correctly.
+        // If not, make a note of the question to ask again later.
     }
 }
