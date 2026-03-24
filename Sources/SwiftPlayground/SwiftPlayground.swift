@@ -1,18 +1,6 @@
 // The Swift Programming Language
 // https://docs.swift.org/swift-book
 
-func options(vocabulary: [[String]], rowIndex: Int) -> String {
-    var guesses = ""
-
-
-    for rowIndex in vocabulary {
-        for word in rowIndex {
-            guesses = "\(vocabulary[1][rowIndex])"
-        }
-    }
-
-    return guesses
-}
 
 @main
 struct SwiftPlayground {
@@ -40,6 +28,7 @@ struct SwiftPlayground {
         while correctCount <= vocabulary.count {
             // Show the question
             print("What is the word \(vocabulary[0][0]) in spanish?")
+            print("\(vocabulary)")
 
             // Check if the user got the correct answer.
             // If not, take not and ask later. 
