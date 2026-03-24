@@ -31,6 +31,8 @@ struct SwiftPlayground {
 
             // Show the question
             print("What is the word \(vocabulary[correctCount][0]) in spanish?")
+
+            // Prints out the different options for the user to select.
             for (index, option) in options.enumerated() {
                 print("\(index + 1). \(option)")
             }
