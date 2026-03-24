@@ -26,9 +26,30 @@ struct SwiftPlayground {
         var correctCount = 0 
         // Loop until all vocab questions asked. 
         while correctCount <= vocabulary.count {
+            let correctAnswer = vocabulary[correctCount][1]
+            var options = Array(vocabulary[correctCount][0])
+
             // Show the question
-            print("What is the word \(vocabulary[0][0]) in spanish?")
-            print("\(vocabulary)")
+            print("What is the word \(vocabulary[correctCount][0]) in spanish?")
+            for (index, option) in options.enumerated() {
+                print("\(index + 1). \(option)")
+            }
+            print("Enter your answer: ")
+
+            if let userInput = readLine() {
+                if let userAnswer = Int(userInput), userAnswer > 0, userAnswer <= 5 {
+                    if options[userAnswer - 1] == correctAnswer {
+                        print("That is correct. ")
+                        correctCount += 1
+                    } else {
+                        print("That is incorrect. The answer is \(correctAnswer)")
+                        incorrectIndices.append(userAnswer)
+                        incorrectCount += 1
+                    }
+                } else {
+                    "Invalid input."
+                }
+            }
 
             // Check if the user got the correct answer.
             // If not, take not and ask later. 
