@@ -1,12 +1,17 @@
 // The Swift Programming Language
 // https://docs.swift.org/swift-book
 
-func options(vocabulary: [[String]], row: Int) -> [[String]] {
-    var optionRow:Int = row
+func options(vocabulary: [[String]], rowIndex: Int) -> String {
+    var guesses = ""
 
-    for row in vocabulary {
-        if 
+
+    for rowIndex in vocabulary {
+        for word in rowIndex {
+            guesses = "\(vocabulary[1][rowIndex])"
+        }
     }
+
+    return guesses
 }
 
 @main
