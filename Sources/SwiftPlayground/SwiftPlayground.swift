@@ -47,7 +47,7 @@ struct SwiftPlayground {
                         incorrectCount += 1
                     }
                 } else {
-                    "Invalid input."
+                    print("Invalid input.")
                 }
             }
 
