@@ -65,7 +65,10 @@ struct SwiftPlayground {
 
         while isRunning {
             print("\nEnter Name (or 'done'): ", terminator: "")
-            let nameInput = readLine()!
+            guard let nameInput = readLine(), nameInput != "" else {
+                print("Invalid input, must enter a name.")
+                continue
+            }
 
             if nameInput.lowercased() == "done" {
                 isRunning = false
