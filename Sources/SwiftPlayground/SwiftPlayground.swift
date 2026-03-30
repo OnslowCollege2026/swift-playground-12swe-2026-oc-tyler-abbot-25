@@ -1,6 +1,8 @@
 // The Swift Programming Language
 // https://docs.swift.org/swift-book
 
+// Second variation of the Duolingo that I made. 
+
 @main
 struct SwiftPlayground {
     static func main() {
