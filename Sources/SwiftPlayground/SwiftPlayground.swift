@@ -57,5 +57,13 @@ struct SwiftPlayground {
                 print("Incorrect! The right answer is \(correctWord)")
             }
         }
+
+        print("""
+        -------  SCORE CARD -------
+        Initially, you got \(score) questions right the first time!
+        Initially, you got \(counter) questions wrong the first time. 
+
+        See you next time!
+        """)
     }
 }
