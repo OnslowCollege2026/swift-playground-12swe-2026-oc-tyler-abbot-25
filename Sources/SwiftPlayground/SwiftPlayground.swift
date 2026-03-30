@@ -26,7 +26,7 @@ struct SwiftPlayground {
         var correctCount = 0 
         
         // Asks all of the questions the first time.
-        for questionIndex in 0..<vocabulary.count {
+        for questionIndex in 0..<vocabulary.count { 
             let correctAnswer = vocabulary[questionIndex][1]
             let options = Array(vocabulary[questionIndex][1...4]).shuffled()
 
