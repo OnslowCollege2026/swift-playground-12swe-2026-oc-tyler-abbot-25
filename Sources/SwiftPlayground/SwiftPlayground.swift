@@ -29,15 +29,15 @@ struct SwiftPlayground {
                 print("- \(answer)")
             }
 
-            if let userInput = readLine(), userInput.lowercased() == correctWord.lowercased() {
+            if let userInput:String = readLine(), userInput.lowercased() == correctWord.lowercased() {
                 score += 1
                 print("Good job, you got it right!")
             } else {
                 incorrectAnswerIndices.append(counter)
                 print("Incorrect! The right answer is \(correctWord)")
+                counter += 1
             }
 
-            counter += 1
         }
 
         while incorrectAnswerIndices.count > 0 {
