@@ -8,7 +8,7 @@ struct SwiftPlayground {
     static func main() {
 
         let vocabulary = [
-            ["Hello.",              "Hola", "Y tu", "Bueno", "Decir"],
+            ["Hello",              "Hola", "Y tu", "Bueno", "Decir"],
             ["Goodbye",  "Adios", "Hola", "Buenos dias", "Necessito"],
             ["Please",     "Por Favor", "Hola", "Adios", "Lo siento"],
             ["Thanks", "Gracias", "Lo siento", "Mi opinion", "Hacer"],
@@ -41,9 +41,11 @@ struct SwiftPlayground {
         }
 
         while incorrectAnswerIndices.count > 0 {
-            let englishWord = vocabulary[counter][0]
-            let correctWord = vocabulary[counter][1]
-            let allAnswers = vocabulary[counter].dropFirst().shuffled()
+            let index = incorrectAnswerIndices[0]
+
+            let englishWord = vocabulary[index][0]
+            let correctWord = vocabulary[index][1]
+            let allAnswers = vocabulary[index].dropFirst().shuffled()
 
             print("What is \(englishWord) in Spanish?")
             allAnswers.forEach { answer in
@@ -62,8 +64,6 @@ struct SwiftPlayground {
         -------  SCORE CARD -------
         Initially, you got \(score) questions right the first time!
         Initially, you got \(counter) questions wrong the first time. 
-
-        See you next time!
         """)
     }
 }
