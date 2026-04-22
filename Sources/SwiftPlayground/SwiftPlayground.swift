@@ -39,7 +39,27 @@ struct SwiftPlayground {
         /// Keeps track of stock and sold counts to update inside functions.
         var stockInKg:Double = 0.0
         var kumuraWeightSold:Double = 0.0
+        /// Used to keep the loop running until the user decides to exit.
+        var running:Bool = true
 
+        while running {
+            let choice = stallMenuChoice()
+
+            switch choice {
+                case 1:
+
+                case 2:
+
+                case 3:
+
+                case 4:
+
+                case 5:
+
+                default:
+                    print("Invalid input, you must select between 1 and 5.")
+            }
+        }
         
     }
 }
