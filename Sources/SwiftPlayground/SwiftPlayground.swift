@@ -3,7 +3,7 @@
 
 
 func stallMenuChoice() -> Int {
-    
+
     while true {
         print("""
         === Roadside Kumara Stall ===
@@ -27,6 +27,19 @@ func stallMenuChoice() -> Int {
 @main
 struct SwiftPlayground {
     static func main() {
-        print("Hello, world!")
+
+        /// Used for calculating costs.
+        let bagCost:Double = 0.2
+        let costPerKg:Double = 3.0
+        let kumuraWeight:Double = 0.1
+
+        /// Lower and upper boundaries 
+        let maximumKumuraStock:Double = 50.0
+
+        /// Keeps track of stock and sold counts to update inside functions.
+        var stockInKg:Double = 0.0
+        var kumuraWeightSold:Double = 0.0
+
+        
     }
 }
