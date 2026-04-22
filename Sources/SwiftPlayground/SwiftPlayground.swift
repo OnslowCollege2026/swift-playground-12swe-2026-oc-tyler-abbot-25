@@ -59,7 +59,8 @@ struct SwiftPlayground {
                     print("Test")
 
                 case 5:
-                    print("Test")
+                    print("Exiting programme, have a good day.")
+                    running = false
 
                 default:
                     print("Invalid input, you must select between 1 and 5.")
