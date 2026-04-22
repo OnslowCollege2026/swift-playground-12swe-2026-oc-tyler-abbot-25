@@ -47,14 +47,19 @@ struct SwiftPlayground {
 
             switch choice {
                 case 1:
+                    print("How many kilograms of kumura would you like to add?")
 
                 case 2:
+                    print("How many kilograms of kumura would you like to buy?")
 
                 case 3:
+                    print("Test")
 
                 case 4:
+                    print("Test")
 
                 case 5:
+                    print("Test")
 
                 default:
                     print("Invalid input, you must select between 1 and 5.")
