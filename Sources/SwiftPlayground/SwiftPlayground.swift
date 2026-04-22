@@ -28,6 +28,12 @@ calculate and display the kumara charge, bag charge, and total charge for the sa
 reduce the available stock when a sale is completed
 */
 
+func stallMenuChoice() -> Int {
+    print("""
+    
+    """)
+}
+
 @main
 struct SwiftPlayground {
     static func main() {
