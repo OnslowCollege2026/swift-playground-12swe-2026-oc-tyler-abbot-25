@@ -24,6 +24,10 @@ func stallMenuChoice() -> Int {
     }
 }
 
+func addKumuraKg(maximumWeight: Int, kumuraAdded: Int) -> Int {
+    
+}
+
 @main
 struct SwiftPlayground {
     static func main() {
@@ -34,7 +38,7 @@ struct SwiftPlayground {
         let kumuraWeight:Double = 0.1
 
         /// Lower and upper boundaries 
-        let maximumKumuraStock:Double = 50.0
+        let maxStockWeight:Double = 50.0
 
         /// Keeps track of stock and sold counts to update inside functions.
         var stockInKg:Double = 0.0
