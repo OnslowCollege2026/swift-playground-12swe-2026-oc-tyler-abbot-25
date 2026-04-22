@@ -65,7 +65,9 @@ struct SwiftPlayground {
                     print("How many kilograms of kumara would you like to add?")
                     if let userInput = readLine(), let amount = Double(userInput) {
                         stockInKg = addKumaraKg(maximumWeight: maxStockWeight, kumaraAdded: amount, kumaraStock: stockInKg)
+                        print("Added \(amount)kgs of kumara to stock.")
                     }
+                    
 
                 case 2:
                     print("How many kilograms of kumara would you like to buy?")
