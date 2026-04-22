@@ -24,8 +24,19 @@ func stallMenuChoice() -> Int {
     }
 }
 
-func addKumuraKg(maximumWeight: Int, kumuraAdded: Int) -> Int {
-    
+func addKumuraKg(maximumWeight: Double, kumuraAdded: Double, kumuraStock: Double) -> Double {
+    if kumuraAdded < 0.1 {
+        print("Invalid amount, you must add at least 100g or 0.1kg of kumura.")
+        return 0
+    }
+
+    if kumuraAdded + kumuraStock > maximumWeight {
+        print("Invalid amount, you will exceed the maximum weight of 50 kilograms.")
+        return 0
+    }
+
+    let newKumuraStock = kumuraAdded + kumuraStock
+    return newKumuraStock
 }
 
 @main
