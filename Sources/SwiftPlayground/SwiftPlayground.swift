@@ -1,8 +1,8 @@
 // The Swift Programming Language
 // https://docs.swift.org/swift-book
 
-// START COMMENTING, FIX THE PROBLEM WHERE IT STILL SELLS BAGS DESPITE NOT WANTING KUMARA.
-
+/// Prints a menu for a user to pick what option they want to do.
+/// - Returns: An integer that represents what option the user picked. 
 func stallMenuChoice() -> Int {
 
     while true {
@@ -26,6 +26,12 @@ func stallMenuChoice() -> Int {
     }
 }
 
+/// Adds an amount the user asks to the stock and caps it at 50kgs.
+/// - Parameters:
+///     - maximumWeight: The most ammount of kilograms the boxes can hold (50kgs).
+///     - kumaraAdded: The amount of kumara in Kgs that the user is trying to add.
+///     - kumaraStock: The current stock.
+/// - Returns: The new amount of stock that the user has added to it.
 func addKumaraKg(maximumWeight: Double, kumaraAdded: Double, kumaraStock: Double) -> Double {
     let kumaraWeight: Double = 0.1
 
@@ -39,11 +45,16 @@ func addKumaraKg(maximumWeight: Double, kumaraAdded: Double, kumaraStock: Double
     }
 }
 
+/// Calculates the new stock amount after the user buys some kumara.
+/// - Parameters:
+///     - kumaraStock: The current stock.
+///     - amount: The amount the user is buying.
+/// - Returns: The 
 func buyKumara(kumaraStock: Double, amount:Double) -> Double {
     if amount >= 0.1 && amount <= kumaraStock {
         let newKumaraStock = kumaraStock - amount
         print("Sold \(amount)kg/s of kumara. You now have \(newKumaraStock)kg/s of kumara left.")
-        return amount 
+        return newKumaraStock 
     } else if amount < 0.1 || amount > kumaraStock {
         print("Invalid amount, you can only buy between 0.1kgs and \(kumaraStock)kgs.")
         return 0
@@ -121,18 +132,22 @@ struct SwiftPlayground {
             case 2:
                 print("How many kilograms of kumara would you like to buy?")
                 if let userInput = readLine(), let amount = Double(userInput) {
-                    // Adds so that it can be used for calculations whilst also appending for the sales records.
-                    kumaraWeightSold += buyKumara(kumaraStock: stockInKg, amount: amount)
-                    stockInKg -= kumaraWeightSold
-                    weightSoldRecords.append(kumaraWeightSold)
+                    if amount >= 0.1 && amount <= stockInKg {
+                        // Adds so that it can be used for calculations whilst also appending for the sales records.
+                        stockInKg = buyKumara(kumaraStock: stockInKg, amount: amount)
+                        kumaraWeightSold = stockInKg - buyKumara(kumaraStock: stockInKg, amount: amount)
+                        weightSoldRecords.append(kumaraWeightSold)
 
-                    // Adds bags used so that it can calculate the total cost and add it to the records.
-                    costsRecord.append(costs(kumaraStock: stockInKg, amount: amount, bagsUsed: bagsUsed(amount: amount, kumaraStock: stockInKg, 
-                    numberOfBags: totalUsedBags)))
+                        // Adds bags used so that it can calculate the total cost and add it to the records.
+                        costsRecord.append(costs(kumaraStock: stockInKg, amount: amount, bagsUsed: bagsUsed(amount: amount, kumaraStock: stockInKg, 
+                        numberOfBags: totalUsedBags)))
 
-                    // Appends for the sales records that will be used in case 4.
-                    numberOfBags.append(bagsUsed(amount: amount, kumaraStock: stockInKg, numberOfBags: totalUsedBags))
-                    totalUsedBags += bagsUsed(amount: amount, kumaraStock: stockInKg, numberOfBags: totalUsedBags)
+                        // Appends for the sales records that will be used in case 4.
+                        numberOfBags.append(bagsUsed(amount: amount, kumaraStock: stockInKg, numberOfBags: totalUsedBags))
+                        totalUsedBags += bagsUsed(amount: amount, kumaraStock: stockInKg, numberOfBags: totalUsedBags)
+                        } else {
+                            
+                        }
 
                 }
 
