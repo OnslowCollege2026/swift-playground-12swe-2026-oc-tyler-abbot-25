@@ -29,7 +29,7 @@ func stallMenuChoice() -> Int {
 func addKumaraKg(maximumWeight: Double, kumaraAdded: Double, kumaraStock: Double) -> Double {
     let kumaraWeight: Double = 0.1
 
-    if kumaraAdded < kumaraWeight && kumaraAdded + kumaraStock > maximumWeight {
+    if kumaraAdded < kumaraWeight, kumaraAdded + kumaraStock > maximumWeight {
         print("Invalid amount, you can only add between 0.1 and 50kgs of kumara.")
         return 0
     } else { 
@@ -40,13 +40,16 @@ func addKumaraKg(maximumWeight: Double, kumaraAdded: Double, kumaraStock: Double
 }
 
 func buyKumara(kumaraStock: Double, amount:Double) -> Double {
-    if amount < 0.1 && amount > kumaraStock {
-        print("Invalid amount, you can only buy from 0.1 to \(kumaraStock)kgs of kumara.")
+    if amount >= 0.1 && amount <= kumaraStock {
+        let newKumaraStock = kumaraStock - amount
+        print("Sold \(amount)kg/s of kumara. You now have \(newKumaraStock)kg/s of kumara left.")
+        return amount 
+    } else if amount < 0.1 || amount > kumaraStock {
+        print("Invalid amount, you can only buy between 0.1kgs and \(kumaraStock)kgs.")
         return 0
-    } else { 
-        let newKumuraStock = kumaraStock - amount
-        print("Sold \(amount)kgs of kumara. There is now \(newKumuraStock)kgs of kumara left.")
-        return newKumuraStock
+    } else {
+        print("Invalid input, must be a number or decimal.")
+        return 0
     }
 }
 
@@ -54,12 +57,12 @@ func costs(kumaraStock: Double, amount:Double, bagsUsed:Double) -> Double {
     let bagPrice: Double = 0.2
     let pricePerKg: Double = 3.0
 
-    if amount < 0.1 && amount > kumaraStock, bagsUsed < 1 {
-        return 0
+    if amount >= 0.1 && amount <= kumaraStock {
+        let price = (amount * pricePerKg) + (bagPrice * bagsUsed)
+        print("Total Price: \(price)")
+        return price
     } else {
-        let costs = (pricePerKg * amount) + (bagPrice * bagsUsed)
-        print("Total Cost: $\(costs).")
-        return costs
+        return 0
     }
 }
 
@@ -69,22 +72,18 @@ func bagsUsed(amount: Double, kumaraStock: Double, numberOfBags: Double) -> Doub
     var amountLeft:Double = amount
     var bagsUsed:Double = 0.0
 
-
-    if amount < 0.1 && amount > kumaraStock {
-        return bagsUsed
-    } 
-
-    if numberOfBags > maximumBags {
-        return bagsUsed
-    } 
-
-    bagsUsed += 1
-    while amountLeft > maximumWeight {
-        amountLeft = amount - maximumWeight 
+    if amount >= 0.1 && amount <= kumaraStock && numberOfBags < maximumBags {
         bagsUsed += 1
+
+        while amountLeft > maximumBags {
+            bagsUsed += 1
+            amountLeft -= maximumWeight
+        }
+
+        return bagsUsed
+    } else {
+        return 0
     }
-    return bagsUsed
-    
 }
 
 @main
@@ -97,9 +96,12 @@ struct SwiftPlayground {
         /// Keeps track of stock and sold counts to update inside functions.
         var stockInKg: Double = 0.0
         var totalUsedBags: Double = 0.0
+        var kumaraWeightSold: Double = 0.0
+
+        /// Holds information for the previous sales records.
         var numberOfBags: [Double] = []
-        var kumaraWeightSold: [Double] = []
         var costsRecord: [Double] = []
+        var weightSoldRecords: [Double] = []
         /// Used to keep the loop running until the user decides to exit.
         var running: Bool = true
 
@@ -119,20 +121,29 @@ struct SwiftPlayground {
             case 2:
                 print("How many kilograms of kumara would you like to buy?")
                 if let userInput = readLine(), let amount = Double(userInput) {
-                    // Appends so that it can be compared in a sales record later.
-                    kumaraWeightSold.append(buyKumara(kumaraStock: stockInKg, amount: amount))
+                    // Adds so that it can be used for calculations whilst also appending for the sales records.
+                    kumaraWeightSold += buyKumara(kumaraStock: stockInKg, amount: amount)
+                    stockInKg -= kumaraWeightSold
+                    weightSoldRecords.append(kumaraWeightSold)
+
+                    // Adds bags used so that it can calculate the total cost and add it to the records.
+                    costsRecord.append(costs(kumaraStock: stockInKg, amount: amount, bagsUsed: bagsUsed(amount: amount, kumaraStock: stockInKg, 
+                    numberOfBags: totalUsedBags)))
+
+                    // Appends for the sales records that will be used in case 4.
                     numberOfBags.append(bagsUsed(amount: amount, kumaraStock: stockInKg, numberOfBags: totalUsedBags))
                     totalUsedBags += bagsUsed(amount: amount, kumaraStock: stockInKg, numberOfBags: totalUsedBags)
 
-                    // Adds bags used so that it can calculate the total cost and add it to the records.
-                    costsRecord.append(costs(kumaraStock: stockInKg, amount: amount, bagsUsed: bagsUsed(amount: amount, kumaraStock: stockInKg, numberOfBags: totalUsedBags)))
                 }
 
             case 3:
                 print("You have \(stockInKg)kg of kumara left.")
 
             case 4:
-                let salesRecord = Array(zip(kumaraWeightSold, costsRecord))
+                let salesRecords = Array(zip(weightSoldRecords, costsRecord))
+                salesRecords.forEach { record in
+                    print("\(record.0)kgs: $\(record.1)")
+                }
 
             case 5:
                 print("Exiting programme, have a good day.")
