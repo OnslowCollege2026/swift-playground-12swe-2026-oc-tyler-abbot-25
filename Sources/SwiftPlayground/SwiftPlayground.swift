@@ -57,7 +57,7 @@ func costs(kumaraStock: Double, amount:Double, bagsUsed:Double) -> Double {
     let bagPrice: Double = 0.2
     let pricePerKg: Double = 3.0
 
-    if amount >= 0.1 && amount <= kumaraStock {
+    if amount >= 0.1 && amount <= kumaraStock && bagsUsed >= 1 {
         let price = (amount * pricePerKg) + (bagPrice * bagsUsed)
         print("Total Price: \(price)")
         return price
