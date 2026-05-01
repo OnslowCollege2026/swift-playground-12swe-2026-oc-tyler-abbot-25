@@ -14,8 +14,8 @@ func stallMenuChoice() -> Int {
             1. Add kumara to the stock
             2. Buy a bag of kumara
             3. Look at how much stock is left
-            4. Sales records
-            5. Average sales calculations
+            4. Look at the sales records
+            5. Look at the average kumara purchased per sale  
             6. Exit
             """)
 
@@ -102,6 +102,7 @@ struct SwiftPlayground {
         var stockInKg: Double = 0.0
         var totalUsedBags: Double = 0.0
         var kumaraWeightSold: Double = 0.0
+        var kumaraPerBag: Double = 0.0
 
         /// Holds information for the previous sales records.
         var costsRecord: [Double] = []
@@ -148,7 +149,15 @@ struct SwiftPlayground {
                 }
 
             case 5:
-                print("test")
+                kumaraPerBag = kumaraWeightSold / totalUsedBags
+
+                print("""
+                Average Sales Calculator:
+                On total, people have bought \(kumaraWeightSold)kgs of kumara.
+                On total, people have used \(totalUsedBags) bags.
+
+                On average, each bag should contain: \(kumaraPerBag)kgs of kumara in them.
+                """)
 
             case 6:
                 print("Exiting programme, have a good day!")
