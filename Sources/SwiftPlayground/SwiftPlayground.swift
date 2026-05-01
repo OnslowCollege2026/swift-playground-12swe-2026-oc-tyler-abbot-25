@@ -153,8 +153,8 @@ struct SwiftPlayground {
 
                 print("""
                 Average Sales Calculator:
-                On total, people have bought \(kumaraWeightSold)kgs of kumara.
-                On total, people have used \(totalUsedBags) bags.
+                In total, people have bought \(kumaraWeightSold)kgs of kumara.
+                In total, people have used \(totalUsedBags) bags.
 
                 On average, each bag should contain: \(kumaraPerBag)kgs of kumara in them.
                 """)
@@ -164,7 +164,7 @@ struct SwiftPlayground {
                 running = false
 
             default:
-                print("Invalid input, you must select between 1 and 5.")
+                print("Invalid input, you must select between 1 and 6.")
             }
         }
     }
