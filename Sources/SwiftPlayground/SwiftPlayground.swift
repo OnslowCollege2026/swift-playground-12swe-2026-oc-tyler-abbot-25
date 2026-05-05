@@ -87,6 +87,7 @@ if numberOfBags >= maximumBags {
     return 0
 }
 
+    // Loops until the amount the user has is less than the maximum bag weight so that the proper amount of baags can be utilised.
     while amountLeft > maximumWeight {
         bagsUsed += 1
         amountLeft -= maximumWeight
@@ -172,6 +173,7 @@ struct SwiftPlayground {
                 """)
 
             case 6:
+                // Exiting message and stops the loop.
                 print("""
                 Thank you for using our kumara shop!
 
