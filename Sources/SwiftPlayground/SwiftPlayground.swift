@@ -32,17 +32,16 @@ func stallMenuChoice() -> Int {
 ///     - maximumWeight: The most ammount of kilograms the boxes can hold (50kgs).
 ///     - kumaraAdded: The amount of kumara in Kgs that the user is trying to add.
 ///     - kumaraStock: The current stock.
+///     - singleKumaraWeight: Represents the weight of a single kumara.
 /// - Returns: The new amount of stock that the user has added to it.
-func addKumaraKg(maximumWeight: Double, kumaraAdded: Double, kumaraStock: Double) -> Double {
-    let kumaraWeight: Double = 0.1
+func addKumaraKg(maximumWeight: Double, kumaraAdded: Double, kumaraStock: Double, singleKumaraWeight: Double) -> Double {
 
-    if kumaraAdded < kumaraWeight || kumaraAdded + kumaraStock > maximumWeight {
-        print("Invalid amount, you can only add between 0.1 and 50kgs of kumara.")
+    if kumaraAdded >= singleKumaraWeight && kumaraAdded + kumaraStock <= maximumWeight {
+        print("Added \(kumaraAdded)kg/s of kumara to the stock.")
+        return kumaraAdded
+    } else {
+        print("Invalid, please check if your stock levels are full or if you are adding at least \(singleKumaraWeight)kgs of kumara to the stock.")
         return 0
-    } else { 
-        let newKumuraStock = kumaraAdded + kumaraStock
-        print("Added \(kumaraAdded)kgs of kumara to the stock.")
-        return newKumuraStock
     }
 }
 
@@ -50,18 +49,20 @@ func addKumaraKg(maximumWeight: Double, kumaraAdded: Double, kumaraStock: Double
 /// - Parameters:
 ///     - kumaraStock: The current stock.
 ///     - amount: The amount the user is buying.
+///     - singleKumaraWeight: Represents the weight of a single kumara.
 /// - Returns: The new amount of stock.
-func buyKumara(kumaraStock: Double, amount:Double) -> Double {
-    if amount >= 0.1 && amount <= kumaraStock {
+func buyKumara(kumaraStock: Double, amount: Double, singleKumaraWeight: Double) -> Double {
     let newKumaraStock = kumaraStock - amount
-    print("Sold \(amount)kg/s of kumara. You now have \(newKumaraStock)kg/s of kumara left.")
+    print("Sold \(amount)kg/s of kumara. You now have \(newKumaraStock)kg/s of kumarleft.")
     return newKumaraStock 
-    } else {
-        return 0
-    }
 }
 
-func costs(kumaraStock: Double, amount:Double, bagsUsed:Double) -> Double {
+/// Calculates how much the order is with the bag price included.
+/// - Parameters:
+///     - amount: How many kgs of kumara the user is buying.
+///     - bagsUsed: How many bags are being used for the order.
+/// - Returns: The total price of the order. 
+func costs(amount:Double, bagsUsed:Double) -> Double {
     let bagPrice: Double = 0.2
     let pricePerKg: Double = 3.0
 
@@ -70,6 +71,11 @@ func costs(kumaraStock: Double, amount:Double, bagsUsed:Double) -> Double {
     return price
 }
 
+/// Calculates how many bags are being used for the order and checks if we're out of bags.
+/// - Paramters:
+///     - amount: How many kgs of kumara the user us buying.
+///     - numberOfBags: How many bags have already been used.
+/// - Returns: How many bags are being used in the order.
 func bagsUsed(amount: Double, numberOfBags: Double) -> Double {
     let maximumBags:Double = 5000
     let maximumWeight:Double = 5.0
@@ -107,6 +113,7 @@ struct SwiftPlayground {
         /// Holds information for the previous sales records.
         var costsRecord: [Double] = []
         var weightSoldRecords: [Double] = []
+
         /// Used to keep the loop running until the user decides to exit.
         var running: Bool = true
 
@@ -117,8 +124,8 @@ struct SwiftPlayground {
             case 1:
                 print("How many kilograms of kumara would you like to add?")
                 if let userInput = readLine(), let amount = Double(userInput) {
-                    stockInKg = addKumaraKg(
-                        maximumWeight: maxStockWeight, kumaraAdded: amount, kumaraStock: stockInKg)
+                    stockInKg += addKumaraKg(
+                        maximumWeight: maxStockWeight, kumaraAdded: amount, kumaraStock: stockInKg, singleKumaraWeight: singleKumaraWeight)
                 } else {
                     print("Invalid input, please only use whole and decimal numbers.")
                 }
@@ -127,11 +134,11 @@ struct SwiftPlayground {
                 print("How many kilograms of kumara would you like to buy?")
                 if let userInput = readLine(), let amount = Double(userInput) {
                     if amount >= singleKumaraWeight && amount <= stockInKg {
-                        stockInKg = buyKumara(kumaraStock: stockInKg, amount: amount)
+                        stockInKg = buyKumara(kumaraStock: stockInKg, amount: amount, singleKumaraWeight: singleKumaraWeight)
                         kumaraWeightSold += amount
                         totalUsedBags += bagsUsed(amount: amount, numberOfBags: totalUsedBags)
                         weightSoldRecords.append(amount)
-                        costsRecord.append(costs(kumaraStock: stockInKg, amount: amount, bagsUsed: bagsUsed(amount: amount, numberOfBags: totalUsedBags)))
+                        costsRecord.append(costs(amount: amount, bagsUsed: bagsUsed(amount: amount, numberOfBags: totalUsedBags)))
                     } else {
                         print("Invalid amount, must be between \(singleKumaraWeight) and \(stockInKg)kgs.")
                     }
