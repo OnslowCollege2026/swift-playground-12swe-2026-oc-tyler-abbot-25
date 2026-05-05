@@ -124,8 +124,7 @@ struct SwiftPlayground {
             case 1:
                 print("How many kilograms of kumara would you like to add?")
                 if let userInput = readLine(), let amount = Double(userInput) {
-                    stockInKg += addKumaraKg(
-                        maximumWeight: maxStockWeight, kumaraAdded: amount, kumaraStock: stockInKg, singleKumaraWeight: singleKumaraWeight)
+                    stockInKg += addKumaraKg(maximumWeight: maxStockWeight, kumaraAdded: amount, kumaraStock: stockInKg, singleKumaraWeight: singleKumaraWeight)
                 } else {
                     print("Invalid input, please only use whole and decimal numbers.")
                 }
@@ -154,12 +153,14 @@ struct SwiftPlayground {
                 print("You have \(stockInKg)kg of kumara left.")
 
             case 4:
+                // Places the weight sold and cost records into a zip so that it can be printed and displayed next to each other.
                 let salesRecords = Array(zip(weightSoldRecords, costsRecord))
                 salesRecords.forEach { record in
                     print("\(record.0)kgs: $\(record.1)")
                 }
 
             case 5:
+                // Updates here instead of being a constant so that it saves and can be changed later on if more sales happen.
                 kumaraPerBag = kumaraWeightSold / totalUsedBags
 
                 print("""
@@ -171,7 +172,12 @@ struct SwiftPlayground {
                 """)
 
             case 6:
-                print("Exiting programme, have a good day!")
+                print("""
+                Thank you for using our kumara shop!
+
+                Total Weight Sold: \(kumaraWeightSold)kgs
+                Total Bags Used: \(totalUsedBags)
+                """)
                 running = false
 
             default:
