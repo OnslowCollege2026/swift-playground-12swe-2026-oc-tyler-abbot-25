@@ -67,7 +67,9 @@ func costs(amount:Double, bagsUsed:Double) -> Double {
     let pricePerKg: Double = 3.0
 
     let price = (amount * pricePerKg) + (bagPrice * bagsUsed)
-    print("Total Price: \(price)")
+    let bagPriceTotal = (bagPrice * bagsUsed)
+    print("Bag Price: $\(bagPriceTotal)")
+    print("Total Price: $\(price)")
     return price
 }
 
