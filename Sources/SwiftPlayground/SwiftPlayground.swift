@@ -121,6 +121,7 @@ struct SwiftPlayground {
         while running {
             let choice = stallMenuChoice()
 
+            // Switch so that it is much easier to detect invalid inputs.
             switch choice {
             case 1:
                 // Asks the user and adds that amount of stock after going through a function to check that it isn't invalid or will break the rules.
