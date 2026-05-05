@@ -36,7 +36,7 @@ func stallMenuChoice() -> Int {
 func addKumaraKg(maximumWeight: Double, kumaraAdded: Double, kumaraStock: Double) -> Double {
     let kumaraWeight: Double = 0.1
 
-    if kumaraAdded < kumaraWeight, kumaraAdded + kumaraStock > maximumWeight {
+    if kumaraAdded < kumaraWeight || kumaraAdded + kumaraStock > maximumWeight {
         print("Invalid amount, you can only add between 0.1 and 50kgs of kumara.")
         return 0
     } else { 
