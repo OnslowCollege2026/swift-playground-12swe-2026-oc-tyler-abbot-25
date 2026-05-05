@@ -33,7 +33,7 @@ func stallMenuChoice() -> Int {
 ///     - kumaraAdded: The amount of kumara in Kgs that the user is trying to add.
 ///     - kumaraStock: The current stock.
 ///     - singleKumaraWeight: Represents the weight of a single kumara.
-/// - Returns: The new amount of stock that the user has added to it.
+/// - Returns: The amount of stock being added to be added on to the current stock levels.
 func addKumaraKg(maximumWeight: Double, kumaraAdded: Double, kumaraStock: Double, singleKumaraWeight: Double) -> Double {
 
     if kumaraAdded >= singleKumaraWeight && kumaraAdded + kumaraStock <= maximumWeight {
@@ -134,9 +134,13 @@ struct SwiftPlayground {
                 print("How many kilograms of kumara would you like to buy?")
                 if let userInput = readLine(), let amount = Double(userInput) {
                     if amount >= singleKumaraWeight && amount <= stockInKg {
+
+                        // Keeps track of how much is being sold as welll as the total usage and amount so that the average can be calculated later on.
                         stockInKg = buyKumara(kumaraStock: stockInKg, amount: amount, singleKumaraWeight: singleKumaraWeight)
                         kumaraWeightSold += amount
                         totalUsedBags += bagsUsed(amount: amount, numberOfBags: totalUsedBags)
+
+                        // Appends so that it can be used in sales records later.
                         weightSoldRecords.append(amount)
                         costsRecord.append(costs(amount: amount, bagsUsed: bagsUsed(amount: amount, numberOfBags: totalUsedBags)))
                     } else {
