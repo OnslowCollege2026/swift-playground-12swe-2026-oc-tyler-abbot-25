@@ -123,6 +123,7 @@ struct SwiftPlayground {
 
             switch choice {
             case 1:
+                // Asks the user and adds that amount of stock after going through a function to check that it isn't invalid or will break the rules.
                 print("How many kilograms of kumara would you like to add?")
                 if let userInput = readLine(), let amount = Double(userInput) {
                     stockInKg += addKumaraKg(maximumWeight: maxStockWeight, kumaraAdded: amount, kumaraStock: stockInKg, singleKumaraWeight: singleKumaraWeight)
